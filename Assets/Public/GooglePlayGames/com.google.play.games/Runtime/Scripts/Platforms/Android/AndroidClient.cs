@@ -165,6 +165,18 @@ namespace GooglePlayGames.Android
             }
         }
 
+        static string nearbyConnectionServiceId = null;
+        public static string NearbyConnectionServiceId
+        {
+            get
+            {
+                if(nearbyConnectionServiceId == null)
+                    nearbyConnectionServiceId = AndroidHelperFragment.CallPackageMetaData<string>("GET_META_DATA","getString","com.google.android.gms.games.NEARBY_CONNECTION_SERVICE_ID") ?? "";
+
+                return nearbyConnectionServiceId;
+            }
+        }
+
         public void RequestServerSideAccess(bool forceRefreshToken, Action<string> callback)
         {
             callback = AsOnGameThreadCallback(callback);
